@@ -124,30 +124,21 @@ public class Model extends Observable {
                 if (tile == null) {
                     continue;
                 }
-                // case2: wait for the first non-null tile, move it to bottom
-                if (last_value == -1){
+                // case2: just move to the min_j and min_j+=1
+                if (tile.value() != last_value){
                     if (j > min_j){
                         changed = true;
                         board.move(i, min_j, tile);
                     }
                     min_j += 1;
                     last_value = tile.value();
-                    continue;
                 }
-                // case3: wait for merge, if current tile is same as the last tile, merge it
-                if (tile.value() == last_value){
+                // case3: if current tile is same as the last tile, merge it
+                else{
                     changed = true;
                     board.move(i, min_j-1, tile);
                     score += last_value * 2;
                     last_value = -1;
-                }
-                else{
-                    if (j > min_j){
-                        changed = true;
-                        board.move(i, min_j, tile);
-                    }
-                    last_value = tile.value();
-                    min_j += 1;
                 }
             }
         }
