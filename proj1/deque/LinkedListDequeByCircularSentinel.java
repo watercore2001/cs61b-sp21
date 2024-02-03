@@ -32,7 +32,7 @@ public class LinkedListDequeByCircularSentinel<Item> implements Deque<Item> {
 
     @Override
     public void addLast(Item item) {
-        AddNode(sentinel_, item, sentinel_.preNode_);
+        AddNode(sentinel_.preNode_, item, sentinel_);
         size_++;
     }
 

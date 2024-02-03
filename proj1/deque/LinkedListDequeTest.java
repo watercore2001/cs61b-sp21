@@ -121,4 +121,19 @@ public class LinkedListDequeTest {
         }
 
     }
+
+    @Test
+    public void randomTest(){
+        LinkedListDequeByCircularSentinel<Integer> lld = new LinkedListDequeByCircularSentinel<Integer>();
+        lld.addLast(66);
+        lld.removeFirst();
+        lld.addLast(87);
+        lld.addFirst(15);
+        lld.addFirst(2);
+        lld.addFirst(88);
+        lld.addFirst(69);
+        lld.addLast(50);
+    }
+
+
 }
