@@ -46,13 +46,12 @@ public class TestBuggyAList {
             } else if (operationNumber == 1) {
                 // size
                 assertEquals(correct.size(), broken.size());
-            }
-            else if (operationNumber == 2){
-                if (correct.size() >0){
+            } else if (operationNumber == 2) {
+                if (correct.size() > 0) {
                     assertEquals(correct.getLast(), broken.getLast());
                 }
-            } else if (operationNumber == 3){
-                if (correct.size() >0){
+            } else if (operationNumber == 3) {
+                if (correct.size() > 0) {
                     assertEquals(correct.removeLast(), broken.removeLast());
                 }
             }
