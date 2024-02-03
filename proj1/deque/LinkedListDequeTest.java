@@ -15,7 +15,7 @@ public class LinkedListDequeTest {
     public void addIsEmptySizeTest() {
 
 
-        LinkedListDequeBySentinel<String> lld1 = new LinkedListDequeBySentinel<String>();
+        LinkedListDequeByTwoSentinel<String> lld1 = new LinkedListDequeByTwoSentinel<String>();
 
 		assertTrue("A newly initialized LLDeque should be empty", lld1.isEmpty());
 		lld1.addFirst("front");
@@ -39,7 +39,7 @@ public class LinkedListDequeTest {
     /** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
     public void addRemoveTest() {
 
-        LinkedListDequeBySentinel<Integer> lld1 = new LinkedListDequeBySentinel<Integer>();
+        LinkedListDequeByTwoSentinel<Integer> lld1 = new LinkedListDequeByTwoSentinel<Integer>();
 		// should be empty
 		assertTrue("lld1 should be empty upon initialization", lld1.isEmpty());
 
@@ -57,7 +57,7 @@ public class LinkedListDequeTest {
     /* Tests removing from an empty deque */
     public void removeEmptyTest() {
 
-        LinkedListDequeBySentinel<Integer> lld1 = new LinkedListDequeBySentinel<>();
+        LinkedListDequeByTwoSentinel<Integer> lld1 = new LinkedListDequeByTwoSentinel<>();
         lld1.addFirst(3);
 
         lld1.removeLast();
@@ -77,9 +77,9 @@ public class LinkedListDequeTest {
     /* Check if you can create LinkedListDeques with different parameterized types*/
     public void multipleParamTest() {
 
-        LinkedListDequeBySentinel<String> lld1 = new LinkedListDequeBySentinel<String>();
-        LinkedListDequeBySentinel<Double> lld2 = new LinkedListDequeBySentinel<Double>();
-        LinkedListDequeBySentinel<Boolean> lld3 = new LinkedListDequeBySentinel<Boolean>();
+        LinkedListDequeByTwoSentinel<String> lld1 = new LinkedListDequeByTwoSentinel<String>();
+        LinkedListDequeByTwoSentinel<Double> lld2 = new LinkedListDequeByTwoSentinel<Double>();
+        LinkedListDequeByTwoSentinel<Boolean> lld3 = new LinkedListDequeByTwoSentinel<Boolean>();
 
         lld1.addFirst("string");
         lld2.addFirst(3.14159);
@@ -94,7 +94,7 @@ public class LinkedListDequeTest {
     /* check if null is return when removing from an empty LinkedListDeque. */
     public void emptyNullReturnTest() {
 
-        LinkedListDequeBySentinel<Integer> lld1 = new LinkedListDequeBySentinel<Integer>();
+        LinkedListDequeByTwoSentinel<Integer> lld1 = new LinkedListDequeByTwoSentinel<Integer>();
 
         boolean passed1 = false;
         boolean passed2 = false;
@@ -107,7 +107,7 @@ public class LinkedListDequeTest {
     /* Add large number of elements to deque; check if order is correct. */
     public void bigLLDequeTest() {
 
-        LinkedListDequeBySentinel<Integer> lld1 = new LinkedListDequeBySentinel<Integer>();
+        LinkedListDequeByTwoSentinel<Integer> lld1 = new LinkedListDequeByTwoSentinel<Integer>();
         for (int i = 0; i < 1000000; i++) {
             lld1.addLast(i);
         }

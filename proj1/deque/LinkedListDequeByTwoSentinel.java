@@ -10,40 +10,20 @@ import java.util.Iterator;
  *
  * @param <Item>
  */
-public class LinkedListDequeBySentinel<Item> implements Deque<Item> {
-    public static class DeNode<Item> {
-        public DeNode<Item> preNode_;
-        public Item item_;
-        public DeNode<Item> postNode_;
-
-        public DeNode(DeNode<Item> preNode,Item item, DeNode<Item> postNode){
-            preNode_ = preNode;
-            item_ = item;
-            postNode_ = postNode;
-        }
-        public void SetPreNode(DeNode<Item> preNode){
-            preNode_ = preNode;
-            preNode_.postNode_ = this;
-        }
-        public void SetPostNode(DeNode<Item> postNode){
-            postNode_ = postNode;
-            postNode_.preNode_ = this;
-        }
-    }
-
+public class LinkedListDequeByTwoSentinel<Item> implements Deque<Item> {
     int size_;
-    DeNode<Item> firstSentinel_;
-    DeNode<Item> lastSentinel_;
+    Node<Item> firstSentinel_;
+    Node<Item> lastSentinel_;
 
-    public LinkedListDequeBySentinel(){
+    public LinkedListDequeByTwoSentinel(){
         size_ = 0;
-        firstSentinel_ = new DeNode<>(null, null, null);
-        lastSentinel_ = new DeNode<>(null, null, null);
+        firstSentinel_ = new Node<>(null, null, null);
+        lastSentinel_ = new Node<>(null, null, null);
         firstSentinel_.SetPostNode(lastSentinel_);
     }
 
-    private void AddNode(DeNode<Item> preNode, Item item, DeNode<Item> postNode){
-        DeNode<Item> newNode = new DeNode<Item>(null, item, null);
+    private void AddNode(Node<Item> preNode, Item item, Node<Item> postNode){
+        Node<Item> newNode = new Node<Item>(null, item, null);
         newNode.SetPreNode(preNode);
         newNode.SetPostNode(postNode);
     }
@@ -72,7 +52,7 @@ public class LinkedListDequeBySentinel<Item> implements Deque<Item> {
 
     @Override
     public int printDeque() {
-        for (DeNode<Item> node = firstSentinel_.postNode_; node.postNode_ != null; node = node.postNode_){
+        for (Node<Item> node = firstSentinel_.postNode_; node.postNode_ != null; node = node.postNode_){
             System.out.println(node.item_);
         }
         return 0;
@@ -83,7 +63,7 @@ public class LinkedListDequeBySentinel<Item> implements Deque<Item> {
         if(size()==0){
             return null;
         }
-        DeNode<Item> first_node = firstSentinel_.postNode_;
+        Node<Item> first_node = firstSentinel_.postNode_;
         firstSentinel_.SetPostNode(firstSentinel_.postNode_.postNode_);
         size_ -= 1;
         return first_node.item_;
@@ -94,7 +74,7 @@ public class LinkedListDequeBySentinel<Item> implements Deque<Item> {
         if(size()==0){
             return null;
         }
-        DeNode<Item> last_node = lastSentinel_.preNode_;
+        Node<Item> last_node = lastSentinel_.preNode_;
         lastSentinel_.SetPreNode(lastSentinel_.preNode_.preNode_);
         size_ -= 1;
         return last_node.item_;
@@ -103,11 +83,23 @@ public class LinkedListDequeBySentinel<Item> implements Deque<Item> {
     @Override
     public Item get(int index) {
         assert index >= 0 && index < size();
-        DeNode<Item> current_node = firstSentinel_.postNode_;
+        Node<Item> current_node = firstSentinel_.postNode_;
         for (int i=0; i<index; i++){
             current_node= current_node.postNode_;
         }
         return current_node.item_;
+    }
+
+    public Item getRecursiveHelper(Node<Item> start, int index){
+        if(index==0){
+            return start.item_;
+        }
+        return getRecursiveHelper(start.postNode_, index-1);
+    }
+
+    public Item getRecursive(int index){
+        assert index >= 0 && index < size();
+        return getRecursiveHelper(firstSentinel_.postNode_, index);
     }
 
     @Override
