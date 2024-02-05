@@ -3,10 +3,14 @@ package deque;
 import java.util.Iterator;
 
 /** Invariant
+ *
  * the addFirst Item will be added in position modLength(nextFirst_).
  * the addLast Item will be added in position modLength(nextLast_).
  * nextLast_ and nextFirst_ can not in [0, length-1]
- * normally, the size of array = (nextLast_ - nextFirst + 1) (+ length if less than 0)
+ *
+ * normally, the size of array = (nextLast_ - nextFirst + 1) (+ length if less than 0),
+ * but better to store the size variable, because nextLast and nextFirst are not reliable all the time!
+ *
  * when nextFirst_ equals nextFirst, there is only one empty pos in array.
  * @param <Item>
  */
@@ -31,7 +35,7 @@ public class ArrayDeque<Item> implements Deque<Item>{
             newArray[i] = get(i);
         }
         array_ = newArray;
-        // bad practice: do not call size() when you change nextLast and nextFirst
+
         nextLast_ = size;
         nextFirst_ = -1;
     }
@@ -61,6 +65,7 @@ public class ArrayDeque<Item> implements Deque<Item>{
 
     @Override
     public int size() {
+        // bad practice: when changing nextLast and nextFirst, this function will wrong
         int size = nextLast_ - nextFirst_ - 1;
         assert size <= array_.length;
         return size;
