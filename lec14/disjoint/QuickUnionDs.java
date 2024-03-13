@@ -16,6 +16,10 @@ import java.util.Arrays;
  *
  * detail2: how can we find root element.(In other word, what value should be
  * stored in root element). just -1 for now
+ *
+ * good: quick union
+ * bad: the runtime of union and find are all related to the height of tree, how to decrease the
+ * height of tree?
  */
 public class QuickUnionDs extends ArrayDs implements DisjointSet {
     public static int ROOT_VALUE=-1;
@@ -24,23 +28,27 @@ public class QuickUnionDs extends ArrayDs implements DisjointSet {
         Arrays.fill(ds, ROOT_VALUE);
     }
 
-    private int findRoot(int p){
+    protected int findRoot(int p){
         validate(p);
         int id = p;
-        while(ds[id]!=-1){
+        while(ds[id]!=ROOT_VALUE){
             id = ds[id];
         }
         return id;
     }
 
+
     @Override
     public void connect(int p, int q) {
-        // find root element in p
-        return;
+        validate(p);
+        validate(q);
+        ds[findRoot(p)]=findRoot(q);
     }
 
     @Override
     public boolean isConnected(int p, int q) {
-        return false;
+        validate(p);
+        validate(q);
+        return findRoot(p)==findRoot(q);
     }
 }

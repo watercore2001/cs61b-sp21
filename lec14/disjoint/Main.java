@@ -8,7 +8,7 @@ public class Main {
 
     @Test
     public void testDs(){
-        DisjointSet ds = new QuickFindDs(10);
+        DisjointSet ds = new WeightedQuickUnionPathCompressionDs(10);
         ds.connect(1,2);
         ds.connect(3,4);
         ds.connect(5,7);
