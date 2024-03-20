@@ -3,6 +3,7 @@ package bstmap;
 import java.util.Iterator;
 import java.util.Set;
 
+
 /** A data structure that uses a linked list to store pairs of keys and values.
  *  Any key must appear at most once in the dictionary, but values may appear multiple
  *  times. Key operations are get(key), put(key, value), and contains(key) methods. The value
@@ -28,10 +29,11 @@ public class ULLMap<K, V>  implements Map61B<K, V> {
         return size;
     }
 
-    /** Removes all of the mappings from this map. */
+    /** Removes all the mappings from this map. */
     @Override
     public void clear() {
         size = 0;
+        // auto garbage collection
         list = null;
     }
 
@@ -74,7 +76,8 @@ public class ULLMap<K, V>  implements Map61B<K, V> {
     private class Entry {
 
         /** Stores KEY as the key in this key-value pair, VAL as the value, and
-         *  NEXT as the next node in the linked list. */
+         *  NEXT as the next node in the linked list.*/
+        // Nested class can auto use K and V
         Entry(K k, V v, Entry n) {
             key = k;
             val = v;

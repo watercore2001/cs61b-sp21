@@ -2,6 +2,7 @@ package bstmap;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
+import java.util.TreeMap;
 
 /** Tests by Brendan Hu, Spring 2015, revised for 2016 by Josh Hug */
 public class TestBSTMap {
@@ -82,7 +83,7 @@ public class TestBSTMap {
     //assumes put works
     @Test
     public void containsKeyNullTest() {
-        BSTMap<String, Integer> b = new BSTMap<String, Integer>();
+        TreeMap<String, Integer> b = new TreeMap<String, Integer>();
         b.put("hi", null);
         assertTrue(b.containsKey("hi"));
     }
