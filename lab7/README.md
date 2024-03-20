@@ -5,9 +5,11 @@
 ~~f(N) = f(N/2) + f(N/2) + O(N) = N + N + ... + N (log2N个) = O(Nlog2N)~~
 Binary Search Tree 天生地可以进行递归
 设 N 为 string 数量， M 为 string 长度，分析 get() 运算的计算复杂度
-树平衡的 case(put in random)，计算复杂度最好，为
-f(N) = f(N/2)  + O(M) = M + M + M + M + ... + M (log2N个) = O(M log2N) 
-树最不平衡的 case(put in order)，计算复杂度最差，为
+
+树平衡的 case (put in random)，计算复杂度最好，为
+f(N) = f(N/2)  + O(M) = M + M + M + M + ... + M (log2N个) = O(M logN) 
+
+树最不平衡的 case (put in order)，计算复杂度最差，为
 f(N) = f(N-1) + f(1) + O(M) = O(MN)
 
 ## size
@@ -27,4 +29,10 @@ Solution: 这两者的本质区别
 - when value==null，node exists
 - when key is not existed, node is also not existed
 因此，让getHelper() 返回 Node
+
+## iterator()
+定义一个类 BSTIterator, Implement Iterator<Key> 接口, 实现 hasNext
+如何遍历？
+method1: 递归实现 keySet()，遍历 keySet() 使用 put
+method2: 
 
